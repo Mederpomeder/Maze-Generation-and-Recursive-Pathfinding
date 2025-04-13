@@ -167,5 +167,10 @@ public class Main {
         }
         System.out.println("-----------------------");
     }
+
+    public static boolean isValidSpot(char[][] maze, int r, int c) {
+        // Check if the cell is valid for movement
+        return r >= 0 && r < maze.length && c >= 0 && c < maze[0].length && maze[r][c] == PATH;
+    }
     
 }
