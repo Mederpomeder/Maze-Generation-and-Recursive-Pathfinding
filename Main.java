@@ -34,4 +34,26 @@ public class Main {
 
         printMaze(mazeCopy);
     }
+
+    public static char[][] generateMaze(int size) {
+        char[][] maze = new char[size][size];
+
+        // Fill all cells with walls (0 for wall)
+        for (int i = 0; i < size; i++) {
+            Arrays.fill(maze[i], WALL);
+        }
+
+        // Start and finish points
+        maze[0][0] = PATH;
+        maze[size-1][size-1] = PATH;
+
+        // Create the main path
+        createMainPath(maze, size);
+
+        // Add random branches
+        addBranches(maze, size);
+
+        return maze;
+    }
+    
 }
