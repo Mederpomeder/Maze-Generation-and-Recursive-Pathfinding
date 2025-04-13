@@ -172,5 +172,26 @@ public class Main {
         // Check if the cell is valid for movement
         return r >= 0 && r < maze.length && c >= 0 && c < maze[0].length && maze[r][c] == PATH;
     }
+
+    public static boolean traverse(char[][] maze, int r, int c) {
+        if (isValidSpot(maze, r, c)) {
+            // Reached the finish
+            if (r == maze.length-1 && c == maze[0].length-1) {
+                return true;
+            }
+
+            // Mark the current cell as visited
+            maze[r][c] = '*';
+
+            // Try all directions (recursively)
+            if (traverse(maze, r - 1, c) || traverse(maze, r, c + 1) || traverse(maze, r + 1, c) || traverse(maze, r, c - 1)) {
+                maze[r][c] = ' ';  // Mark the current cell as part of the solution path
+                return true;
+            }
+
+            return false;
+        }
+        return false;
+    }
     
 }
