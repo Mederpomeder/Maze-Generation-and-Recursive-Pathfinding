@@ -92,5 +92,24 @@ public class Main {
         }
     }
 
+    private static int chooseDirection(int x, int y, int targetX, int targetY) {
+        // Choose direction towards the finish with priority
+        int[] directions = new int[2]; // Array for possible directions to the target
+        int count = 0; // Counter for possible directions
+
+        if (y < targetY) directions[count++] = 0; // right
+        if (x < targetX) directions[count++] = 1; // down
+        if (y > targetY) directions[count++] = 2; // left
+        if (x > targetX) directions[count++] = 3; // up
+
+        if (count > 0) {
+            // 80% chance to choose direction towards the target
+            if (random.nextInt(100) < 80) {
+                return directions[random.nextInt(count)];
+            }
+        }
+
+        return random.nextInt(4);  // Otherwise, pick a random direction
+    }
     
 }
