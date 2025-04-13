@@ -111,5 +111,22 @@ public class Main {
 
         return random.nextInt(4);  // Otherwise, pick a random direction
     }
+
+    private static void addBranches(char[][] maze, int size) {
+        // Number of branches depends on the maze size
+        int branches = size * 2;
+
+        for (int i = 0; i < branches; i++) {
+            int x, y;
+            // Choose a random point on the main path
+            do {
+                x = random.nextInt(size); 
+                y = random.nextInt(size);
+            } while (maze[x][y] != PATH); // Ensure the point is on the main path
+            
+            // Try to create a branch
+            createBranch(maze, x, y, size);
+        }
+    }
     
 }
