@@ -55,5 +55,42 @@ public class Main {
 
         return maze;
     }
+
+    private static void createMainPath(char[][] maze, int size) {
+        int x = 0, y = 0;
+
+        while (x != size-1 && y != size-1) {  // Fixing the logical operator here (&&)
+            // Choose direction towards the finish with priority
+            int direction = chooseDirection(x, y, size-1, size-1);
+
+            switch (direction) {
+                case 0: // right
+                    if (y < size-1) {
+                        maze[x][y+1] = PATH;
+                        y++;
+                    }
+                    break;
+                case 1: // down
+                    if (x < size-1) {
+                        maze[x+1][y] = PATH;
+                        x++;
+                    }
+                    break;
+                case 2: // left
+                    if (y > 0 && (x != size-1 || y-1 != size-1)) {  // Fixed condition
+                        maze[x][y-1] = PATH;
+                        y--;
+                    }
+                    break;
+                case 3: // up
+                    if (x > 0 && (x-1 != size-1 || y != size-1)) {  // Fixed condition
+                        maze[x-1][y] = PATH;
+                        x--;
+                    }
+                    break;
+            }
+        }
+    }
+
     
 }
