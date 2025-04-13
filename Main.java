@@ -128,5 +128,32 @@ public class Main {
             createBranch(maze, x, y, size);
         }
     }
+
+    private static void createBranch(char[][] maze, int startX, int startY, int size) {
+        // Length of the branch is between 3 and size/2 cells
+        int length = 3 + random.nextInt(size/2); 
+        int x = startX, y = startY;
+
+        for (int i = 0; i < length; i++) {
+            int direction = random.nextInt(4);  // Random direction
+            int newX = x, newY = y;
+
+            switch (direction) {
+                case 0: newY++; break; // right
+                case 1: newX++; break; // down
+                case 2: newY--; break; // left
+                case 3: newX--; break; // up
+            }
+
+            // Ensure the branch doesn't go out of bounds
+            if (newX >= 0 && newX < size && newY >= 0 && newY < size) {
+                if (maze[newX][newY] == WALL) {
+                    maze[newX][newY] = PATH; // If it's a wall, make it part of the path
+                    x = newX; // Update current coordinates
+                    y = newY;
+                }
+            }
+        }
+    }
     
 }
