@@ -1,8 +1,9 @@
+
 import java.util.*;
 
 public class Main {
-    private static final char WALL = '0';
-    private static final char PATH = '.'; 
+    private static final char WALL = '#';
+    private static final char PATH = '~'; 
     private static final Random random = new Random();
 
     public static void main(String[] args) {
@@ -181,11 +182,11 @@ public class Main {
             }
 
             // Mark the current cell as visited
-            maze[r][c] = '*';
+            maze[r][c] = '@';
 
             // Try all directions (recursively)
             if (traverse(maze, r - 1, c) || traverse(maze, r, c + 1) || traverse(maze, r + 1, c) || traverse(maze, r, c - 1)) {
-                maze[r][c] = ' ';  // Mark the current cell as part of the solution path
+                maze[r][c] = '.';  // Mark the current cell as part of the solution path
                 return true;
             }
 
